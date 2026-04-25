@@ -1,66 +1,201 @@
-# [Mozilla Hubs](https://hubs.mozilla.com/)
+# The DAOVerse
 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0) [![Build Status](https://travis-ci.org/mozilla/hubs.svg?branch=master)](https://travis-ci.org/mozilla/hubs) [![Discord](https://img.shields.io/discord/498741086295031808)](https://discord.gg/CzAbuGu)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
+[![ETHAmsterdam](https://img.shields.io/badge/ETHAmsterdam-Hackathon%20Winner-blueviolet)](https://ethglobal.com)
+[![Polygon](https://img.shields.io/badge/Network-Polygon-8247e5)](https://polygon.technology)
+[![IPFS](https://img.shields.io/badge/Storage-IPFS-65c2cb)](https://ipfs.io)
 
-The client-side code for [Mozilla Hubs](https://hubs.mozilla.com/), an online 3D collaboration platform that works for desktop, mobile, and VR platforms.
+> A 3D Web & VR-enabled metaverse platform facilitating community onboarding & engagement for DAOs, NFT projects, and Web3 communities.
 
-[Learn more about Hubs](https://hubs.mozilla.com/docs/welcome.html)
+---
+
+## Overview
+
+The DAOVerse is a decentralized application (dApp) that enables Web3 communities — DAOs, NFT creators, and beyond — to **gamify and personalize the process** by which they onboard and incentivize new and existing community members. Built on top of Mozilla Hubs and A-Frame, it delivers an immersive 3D/VR environment accessible from any web browser, mobile device, or compatible VR headset.
+
+Web3 communities today face fragmented onboarding: members are scattered across Telegram, Discord, Twitter, and other platforms with no clear engagement flow. The DAOVerse solves this by creating a single, tailored, gamified metaverse space where community culture, learning, bounties, and social connection all live together.
+
+---
+
+## Awards
+
+Built at **ETHAmsterdam Hackathon**:
+
+| Award | Sponsor |
+|---|---|
+| 💪 UX Prize | Web3Auth |
+| 🥇 Best Use | Coinbase Wallet |
+| 🥈 Best Use | Polygon |
+| 📈 Projects with Huge Potential | Tatum |
+| 🏊 IPFS/Filecoin Pool Prize | Protocol Labs |
+
+---
+
+## Features
+
+### Gamified Onboarding
+- Connect a wallet and select an avatar to enter the onboarding level
+- Complete community-defined quests and missions to earn **POAP badges** (LEARN, EARN, PLAY)
+- Automatically receive NFT rewards upon completing badge requirements
+- Gate access to the full DAOVerse until minimum onboarding requirements are met
+
+### Full DAOVerse Experience (Blu3DAO Pilot)
+- **Bounty Chest** — Community contributors post initiatives with DAO token rewards; members bid to earn
+- **Community Area** — Wander with your avatar and meet fellow members and potential collaborators
+- **Resources Area** — Share and discover links, media, and tools curated by the community
+- **Event Area** — Attend live-streamed workshops and community events
+
+### Wallet Integration
+- **MetaMask** (Injected Connector)
+- **WalletConnect** — Mobile wallet bridge
+- **Coinbase Wallet** — WalletLink connector
+- **Web3Auth** — Social login and email-based onboarding for users new to crypto
+
+### 3D / VR Environment
+- Full 3D and WebVR support via A-Frame and Mozilla Hubs
+- Works in-browser, on mobile, and with compatible VR headsets (no download required)
+- Real-time multiplayer via Networked A-Frame and Janus WebRTC
+
+### NFT & Blockchain
+- NFT badge minting powered by the **Tatum API** on **Polygon**
+- Metaverse assets hosted on **IPFS** via Protocol Labs
+- Wallet message signing and verification for authentication
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend Framework | React 16, React Router 5 |
+| 3D / VR | A-Frame, Three.js, Mozilla Hubs (custom fork) |
+| Multiplayer | Networked A-Frame, Janus WebRTC, Phoenix Channels |
+| Wallet / Web3 | ethers.js, web3.js, @web3-react/core |
+| Wallet Connectors | InjectedConnector, WalletConnect, WalletLink (Coinbase) |
+| Auth | Web3Auth |
+| NFT Minting | Tatum API |
+| Blockchain | Polygon (MATIC) |
+| Decentralized Storage | IPFS / Filecoin |
+| UI Components | Chakra UI, Emotion, Sass |
+| Build Tools | Webpack 4, Babel |
+| Backend | Reticulum (Phoenix/Elixir) |
+
+---
 
 ## Getting Started
 
-If you would like to run Hubs on your own servers, check out [Hubs Cloud](https://hubs.mozilla.com/docs/hubs-cloud-intro.html).
+### Prerequisites
 
-If you would like to deploy a custom client to your existing Hubs Cloud instance please refer to [this guide](https://hubs.mozilla.com/docs/hubs-cloud-custom-clients.html).
+- [Node.js](https://nodejs.org) v12 or higher
+- An [Infura](https://infura.io) API key for RPC endpoints
+- A [Tatum](https://tatum.io) API key for NFT minting
 
-If you would like to contribute to the main fork of the Hubs client please see the [contributor guide](./CONTRIBUTING.md).
-
-If you just want to check out how Hubs works and make your own modifications continue on to our Quick Start Guide.
-
-### Quick Start
-
-[Install NodeJS](https://nodejs.org) if you haven't already. We recommend version 12 or above.
-
-Run the following commands:
+### Installation
 
 ```bash
-git clone https://github.com/mozilla/hubs.git
-cd hubs
+git clone https://github.com/your-org/DAOVerse.git
+cd DAOVerse
 npm ci
-npm run dev
 ```
 
-Then visit https://localhost:8080 (note: HTTPS is required, you'll need to accept the warning for the self-signed SSL certificate)
+### Configuration
 
-> Note: When running the Hubs client locally, you will still connect to the development versions of our [Janus WebRTC](https://github.com/mozilla/janus-plugin-sfu) and [reticulum](https://github.com/mozilla/reticulum) servers. These servers do not allow being accessed outside of localhost. If you want to host your own Hubs servers, please check out [Hubs Cloud](https://hubs.mozilla.com/docs/hubs-cloud-intro.html).
+Copy `.defaults.env` and fill in your values:
 
-## Documentation
+```bash
+cp .defaults.env .env
+```
 
-The Hubs documentation can be found [here](https://hubs.mozilla.com/docs).
+Key environment variables:
 
-## Community
+| Variable | Description |
+|---|---|
+| `INFURA_KEY` | Infura project ID for Ethereum RPC |
+| `RETICULUM_SERVER` | Backend server URL (default: `dev.reticulum.io`) |
+| `CORS_PROXY_SERVER` | CORS proxy service URL |
+| `THUMBNAIL_SERVER` | Media thumbnail service URL |
+| `ASSET_BUNDLE_SERVER` | Asset hosting URL |
+| `DEFAULT_SCENE_SID` | Default VR scene identifier |
+| `BASE_ASSETS_PATH` | Path for static asset serving |
 
-Join us on our [Discord Server](https://discord.gg/CzAbuGu) or [follow us on Twitter](https://twitter.com/MozillaHubs).
+### Running Locally
+
+```bash
+# Development server (all features)
+npm run dev
+
+# Development against a Hubs Cloud instance
+npm run start
+
+# Local-only development
+npm run local
+```
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+### Other Commands
+
+```bash
+npm run lint      # Run ESLint
+npm run test      # Run test suite
+```
+
+---
+
+## How It Works
+
+1. **Connect** — A user lands on the DAOVerse and connects their wallet via MetaMask, WalletConnect, Coinbase Wallet, or Web3Auth.
+2. **Onboard** — They select an avatar and enter the onboarding level, where they find community-defined quests.
+3. **Earn Badges** — Completing quests (e.g., reading about the DAO, following social handles, connecting a wallet) earns POAP-style NFT badges minted on Polygon via Tatum.
+4. **Unlock Access** — Once all required badges are collected, the user is minted an NFT entrance pass and gains access to the full DAOVerse environment.
+5. **Engage** — Inside the full experience, members attend events, claim bounties, find collaborators, and contribute to the community — all within a shared 3D world.
+
+---
+
+## Beta Pilot: Blu3DAOVerse
+
+The initial pilot was built for [Blu3DAO](https://blu3dao.com). New members must collect three badges:
+
+| Badge | Requirement |
+|---|---|
+| **EARN** | Connect your wallet |
+| **LEARN** | Read about the DAO, watch a video, and pass a quiz |
+| **PLAY** | Follow 2 of 4 Blu3DAO social media handles |
+
+Upon earning all three, members receive an NFT entrance pass to the full Blu3DAOVerse with Bounty Chest, Community Area, Resources Area, and Event Area.
+
+---
+
+## Hubs Cloud Deployment
+
+The DAOVerse client can be deployed to any [Hubs Cloud](https://hubs.mozilla.com/docs/hubs-cloud-intro.html) instance. Refer to the [custom client deployment guide](https://hubs.mozilla.com/docs/hubs-cloud-custom-clients.html) for details on connecting to your own Reticulum backend.
+
+---
 
 ## Contributing
 
-Read our [contributor guide](./CONTRIBUTING.md) to learn how you can submit bug reports, feature requests, and pull requests.
+Contributions are welcome. Please open an issue or pull request describing your proposed change. For significant changes, open an issue first to discuss.
 
-We're also looking for help with localization. The Hubs redesign has a lot of new text and we need help from people like you to translate it. Follow the [localization docs](./src/assets/locales/README.md) to get started.
+See [CONTRIBUTING.md](./CONTRIBUTING.md) for detailed guidelines.
 
-Contributors are expected to abide by the project's [Code of Conduct](./CODE_OF_CONDUCT.md) and to be respectful of the project and people working on it. 
-
-## Additional Resources
-
-* [Reticulum](https://github.com/mozilla/reticulum) - Phoenix-based backend for managing state and presence.
-* [NAF Janus Adapter](https://github.com/mozilla/naf-janus-adapter) - A [Networked A-Frame](https://github.com/networked-aframe) adapter for the Janus SFU service.
-* [Janus Gateway](https://github.com/meetecho/janus-gateway) - A WebRTC proxy used for centralizing network traffic in this client.
-* [Janus SFU Plugin](https://github.com/mozilla/janus-plugin-sfu) - Plugins for Janus which enables it to act as a SFU.
-* [Hubs-Ops](https://github.com/mozilla/hubs-ops) - Infrastructure as code + management tools for running necessary backend services on AWS.
-
-## Privacy
-
-Mozilla and Hubs believe that privacy is fundamental to a healthy internet. Read our [privacy policy](./PRIVACY.md) for more info.
+---
 
 ## License
 
-Hubs is licensed with the [Mozilla Public License 2.0](./LICENSE)
+This project is licensed under the [Mozilla Public License 2.0](https://opensource.org/licenses/MPL-2.0). See [LICENSE](./LICENSE) for details.
+
+---
+
+## Acknowledgements
+
+- [Mozilla Hubs](https://hubs.mozilla.com/) — Open-source 3D collaboration platform (base framework)
+- [A-Frame](https://aframe.io/) — Web framework for building VR experiences
+- [Web3Auth](https://web3auth.io/) — Wallet authentication and social login
+- [Tatum](https://tatum.io/) — NFT minting API
+- [Protocol Labs](https://protocol.ai/) — IPFS / Filecoin decentralized storage
+- [Polygon](https://polygon.technology/) — Layer 2 blockchain for NFT rewards
+- [Blu3DAO](https://blu3dao.com/) — Pilot community partner
